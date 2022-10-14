@@ -60,7 +60,7 @@ func All(els ...bool) bool {
 	return true
 }
 
-func Unique[T constraints.Ordered](els ...T) []T {
+func Unique[T comparable](els ...T) []T {
 	m := make(map[T]struct{}, len(els))
 
 	for _, el := range els {

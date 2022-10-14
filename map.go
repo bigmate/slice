@@ -9,3 +9,9 @@ func Map[A, B any](arr []A, lambda func(A) B) []B {
 
 	return refArr
 }
+
+func Apply[T any](arr []T, lambda func(T) T) {
+	for i := range arr {
+		arr[i] = lambda(arr[i])
+	}
+}
