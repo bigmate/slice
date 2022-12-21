@@ -52,7 +52,7 @@ func Any[T comparable](target T, els ...T) bool {
 	return false
 }
 
-func AnyFunc[T any](els []T, lambda func(el T) bool) bool {
+func AnyFunc[T any](lambda func(el T) bool, els ...T) bool {
 	for _, el := range els {
 		if lambda(el) {
 			return true
@@ -74,7 +74,7 @@ func All[T comparable](target T, els ...T) bool {
 	return true
 }
 
-func AllFunc[T any](els []T, lambda func(el T) bool) bool {
+func AllFunc[T any](lambda func(el T) bool, els ...T) bool {
 	for _, el := range els {
 		if !lambda(el) {
 			return false
