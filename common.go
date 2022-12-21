@@ -40,9 +40,11 @@ func Sum[T constraints.Ordered](els ...T) T {
 	return s
 }
 
-func Any(els ...bool) bool {
-	for _, el := range els {
-		if el {
+func Any[T comparable](target T, els ...T) bool {
+	for i := range els {
+		el := els[i]
+
+		if el == target {
 			return true
 		}
 	}
@@ -50,9 +52,31 @@ func Any(els ...bool) bool {
 	return false
 }
 
-func All(els ...bool) bool {
+func AnyFunc[T any](els []T, lambda func(el T) bool) bool {
 	for _, el := range els {
-		if !el {
+		if lambda(el) {
+			return true
+		}
+	}
+
+	return false
+}
+
+func All[T comparable](target T, els ...T) bool {
+	for i := range els {
+		el := els[i]
+
+		if el != target {
+			return false
+		}
+	}
+
+	return true
+}
+
+func AllFunc[T any](els []T, lambda func(el T) bool) bool {
+	for _, el := range els {
+		if !lambda(el) {
 			return false
 		}
 	}
