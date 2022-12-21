@@ -52,6 +52,10 @@ func Any[T comparable](target T, els ...T) bool {
 	return false
 }
 
+func AnyBool(els ...bool) bool {
+	return Any(true, els...)
+}
+
 func AnyFunc[T any](lambda func(el T) bool, els ...T) bool {
 	for _, el := range els {
 		if lambda(el) {
@@ -72,6 +76,10 @@ func All[T comparable](target T, els ...T) bool {
 	}
 
 	return true
+}
+
+func AllBool(els ...bool) bool {
+	return All(true, els...)
 }
 
 func AllFunc[T any](lambda func(el T) bool, els ...T) bool {
