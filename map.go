@@ -40,3 +40,9 @@ func Apply[T any](arr []T, lambda func(T) T) {
 		arr[i] = lambda(arr[i])
 	}
 }
+
+func ApplyPtr[T any](arr []T, lambda func(*T)) {
+	for i := range arr {
+		lambda(&arr[i])
+	}
+}
